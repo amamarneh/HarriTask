@@ -88,8 +88,8 @@ public class CountryActivity extends BaseActivity implements CountriesRecyclerVi
                 }
 
                 //show details of first country
-                if (countries.size() > 0){
-                    onCountryClicked(countries.get(0));
+                if (countries.size() > viewModel.getSelectedPosition()){
+                    onCountryClicked(countries.get(viewModel.getSelectedPosition()), viewModel.getSelectedPosition());
                 }
             }
         });
@@ -117,7 +117,7 @@ public class CountryActivity extends BaseActivity implements CountriesRecyclerVi
 
 
     @Override
-    public void onCountryClicked(Country country) {
+    public void onCountryClicked(Country country, int position) {
         countryDetailsFragment.showCountry(country);
         viewModel.getWeatherForTodayAndTomorrow(country.getLatlng().get(0), country.getLatlng().get(1)).observe(CountryActivity.this, weathers -> {
             if (weathers != null && weathers.size() > 0){
@@ -125,5 +125,7 @@ public class CountryActivity extends BaseActivity implements CountriesRecyclerVi
             }
         });
         hideDrawer();
+
+        viewModel.setSelectedPosition(position);
     }
 }

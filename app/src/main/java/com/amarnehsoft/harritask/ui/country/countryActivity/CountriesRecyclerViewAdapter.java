@@ -34,7 +34,7 @@ public class CountriesRecyclerViewAdapter extends RecyclerView.Adapter<CountryRe
     @Override
     public void onBindViewHolder(@NonNull CountryRecyclerViewHolder holder, int position) {
         holder.binding.getRoot().setOnClickListener(view -> {
-            listener.onCountryClicked(list.get(position));
+            listener.onCountryClicked(list.get(position), position);
         });
         holder.binding.setBean(list.get(position));
     }
@@ -50,6 +50,6 @@ public class CountriesRecyclerViewAdapter extends RecyclerView.Adapter<CountryRe
     }
 
     interface Listener{
-        void onCountryClicked(Country country);
+        void onCountryClicked(Country country, int position);
     }
 }

@@ -24,6 +24,7 @@ public class CountryActivityViewModel extends ViewModel {
     private MutableLiveData<List<Country>> resultLive = null;
     private MutableLiveData<String> errorLive = new MutableLiveData<>();
     private DisposableSingleObserver<List<Country>> disposableSingleObserver;
+    private int selectedPosition;
 
     @Inject
     CountryActivityViewModel(CountriesRepo countriesRepo, WeatherRepo weatherRepo){
@@ -84,5 +85,13 @@ public class CountryActivityViewModel extends ViewModel {
 
     public void clear(){
         disposableSingleObserver.dispose();
+    }
+
+    public void setSelectedPosition(int selectedPosition) {
+        this.selectedPosition = selectedPosition;
+    }
+
+    public int getSelectedPosition() {
+        return selectedPosition;
     }
 }

@@ -32,7 +32,10 @@ public class WeatherPagerAdapter extends FragmentPagerAdapter {
     }
 
     public void updateData(List<Weather> weathers){
-        weatherFragments[0].showWeather(weathers.get(0));
-        weatherFragments[1].showWeather(weathers.get(1));
+        if (weatherFragments[0] != null && weathers.size() > 0)
+            weatherFragments[0].showWeather(weathers.get(0));
+
+        if (weatherFragments[1] != null && weathers.size() > 1)
+            weatherFragments[1].showWeather(weathers.get(1));
     }
 }
